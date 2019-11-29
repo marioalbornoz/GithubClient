@@ -1,2 +1,2 @@
 # GithubClient
-*Practicas de javaScript
+*Practicas de javaScript y Node
