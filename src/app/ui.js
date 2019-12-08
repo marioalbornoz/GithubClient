@@ -1,5 +1,5 @@
 class Ui {
-    constructor(){
+    constructor() {
         this.profile = document.getElementById('profile');
     }
 
@@ -17,11 +17,47 @@ class Ui {
                 <span class=" badge badge-primary"> 
                         Followin: ${user.following}
                 </span>
+                <span class=" badge badge-info d-block"> 
+                        Blog: ${user.blog}
+                </span>
+                
             </div>
             </div>
             
         `;
-        
+        this.clearMessage();
+
+    }
+
+    showMessage(message, classCss){
+        const div = document.createElement('div');
+        div.className= classCss;
+        div.appendChild(document.createTextNode(message));
+        const content = document.querySelector('.row');
+        const profile = document.querySelector('#profile');
+        content.insertBefore(div, profile);
+    }
+    clearMessage() {
+        const alertFound = document.querySelector('.alert');
+        if(alertFound) {
+            alertFound.remove();
+        }
+    }
+
+    showRepositories(repositories) {
+        let template=' ';
+        repositories.forEach(repo => {
+            template += `
+            <div class="card card-body mt-2 animated bounceInUp">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        document.getElementById('repositories').innerHTML = template;
     }
 }
 
